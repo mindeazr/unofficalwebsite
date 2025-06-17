@@ -198,12 +198,70 @@
       width: 100%;
       border-radius: 6px;
     }
+
+    /* Floating electricity orb */
+    .electric-orb {
+      position: fixed;
+      bottom: 50px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(0,183,255,0.6) 60%, rgba(0,0,0,0.2) 100%);
+      box-shadow: 0 0 15px rgba(0,200,255,0.7), inset 0 0 20px rgba(255,255,255,0.5);
+      animation: orbFloat 6s ease-in-out infinite, orbPulse 3s ease-in-out infinite;
+      overflow: hidden;
+      z-index: 5;
+    }
+
+    .electric-orb::before,
+    .electric-orb::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 2px;
+      height: 120px;
+      background: linear-gradient(to bottom, white, rgba(255,255,255,0));
+      opacity: 0;
+    }
+
+    .electric-orb::before {
+      transform: translate(-50%, -50%) rotate(20deg);
+      animation: lightning 7s infinite;
+    }
+
+    .electric-orb::after {
+      transform: translate(-50%, -50%) rotate(-20deg);
+      animation: lightning 7s infinite 3s;
+    }
+
+    @keyframes orbFloat {
+      0%, 100% { transform: translate(-50%, 0); }
+      50% { transform: translate(-50%, -20px); }
+    }
+
+    @keyframes orbPulse {
+      0%, 100% {
+        box-shadow: 0 0 15px rgba(0,200,255,0.7), inset 0 0 20px rgba(255,255,255,0.5);
+      }
+      50% {
+        box-shadow: 0 0 30px rgba(0,200,255,1), inset 0 0 40px rgba(255,255,255,0.9);
+      }
+    }
+
+    @keyframes lightning {
+      0%, 95%, 100% { opacity: 0; }
+      96% { opacity: 1; }
+    }
   </style>
 </head>
 <body>
 
   <div class="animated-logo">Droid Emotion Expressions</div>
   <div class="pulse-lines"></div>
+  <div class="electric-orb"></div>
 
   <!-- LEFT SIDE CERTIFICATION REEL -->
   <div class="certificate-reel-container">
